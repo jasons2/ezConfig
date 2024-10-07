@@ -9,6 +9,7 @@ This script enables a network engineer to easily push configuration(s) to a remo
 as the variables to use, and the template to apply.
 
 ## Example YAML file (excerpt from job_definition.yml in sample_job dir):
+```
 - name: remove sccp values
   description: Remove old SCCP values
   device_names: [host1.somedomain.com, host2.somedomain.com, host3.somedomain.com]
@@ -16,8 +17,10 @@ as the variables to use, and the template to apply.
   variables:
     on_prem_ip_1: 10.10.10.10
     on_prem_ip_2: 20.20.20.20
+```
 
 ## Example Jinja file (remove_sccp.j2 in sample_job dir):
+```
 !
 no sccp
 sccp ccm group 1
@@ -27,15 +30,17 @@ sccp ccm group 1
 no sccp ccm {{ on_prem_ip_1 }} identifier 1 version 7.0 
 no sccp ccm {{ on_prem_ip_2 }} identifier 2 version 7.0 
 !
+```
 
-# ow to Use It: 
-Example:  ezConfig -u someuser -p somepassword --job some_job_name
+# How to Use It: 
+Example:  `ezConfig -u someuser -p somepassword --job some_job_name`
 
 The username and password must be valid for all devices which will be changed.
 The job name (some_job_name) is a directory in the JOBS directory.  The 
 script will automatically find the YAML file in the directory and execute it.
 
-```usage:
+```
+usage:
 ezConfig.py [-h] -u USERNAME [-p PASSWORD] [--project PROJECT]
 
 Collects input from user.
