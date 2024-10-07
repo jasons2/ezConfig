@@ -13,7 +13,7 @@ import sys
 from logging import INFO, DEBUG
 
 # IMPORT CONSTANTS
-from CONSTANTS import PROJECT_DIR
+from CONSTANTS import JOB_DIR
 from CONSTANTS import GATHER_CONFIG_BEFORE_TASK
 from CONSTANTS import GATHER_CONFIG_AFTER_TASK
 from CONSTANTS import ANSIBLE_PLAYBOOK_REL_PATH
@@ -21,7 +21,7 @@ from CONSTANTS import ANSIBLE_PLAYBOOK_REL_PATH
 
 # IMPORT HELPER FUNCTIONS
 from HELPERS import getArgs
-from HELPERS import get_project_details
+from HELPERS import get_job_details
 from HELPERS import shortenFQDN
 from HELPERS import create_ansible_playbook_dirs
 from HELPERS import copy_jinja2_template
@@ -38,13 +38,13 @@ def main() -> None:
 
     logger = setupLogging(__name__, "ezConfig", INFO, DEBUG)
     args = getArgs()
-    project_home = PROJECT_DIR.joinpath(args.project)
+    job_home = JOB_DIR.joinpath(args.job)
 
     print()
-    print(f"Starting {args.project}")
+    print(f"Starting {args.job}")
 
     try:
-        changes_to_make = get_project_details(project_home)
+        changes_to_make = get_job_details(job_home)
     except (FileNotFoundError, ValueError, NotADirectoryError) as err:
         logger.info(err)
         logger.info("Error found. exiting...")
@@ -52,7 +52,7 @@ def main() -> None:
 
     for change in changes_to_make:
         print(f"Preparing {change['description']}")
-        change_dir = project_home.joinpath(change["name"].replace(" ", "_"))
+        change_dir = job_home.joinpath(change["name"].replace(" ", "_"))
         main_playbook_name = change["name"].replace(" ", "_") + ".yml"
 
         # Create Ansible Working Environment

@@ -20,7 +20,7 @@ from logging import INFO, DEBUG
 # CONSTANTS IMPORTS
 from CONSTANTS import LOGGING_DIR
 from CONSTANTS import LOGGING_FORMAT
-from CONSTANTS import PROJECT_DIR
+from CONSTANTS import JOB_DIR
 from CONSTANTS import IPV4_PATTERN
 from CONSTANTS import ANSIBLE_PLAYBOOK_REL_PATH
 from CONSTANTS import ANSIBLE_HOST_VARS_REL_PATH
@@ -82,9 +82,7 @@ def getArgs() -> dict:
     # Add arguments
     parser.add_argument("-u", "--username", required=True, type=str, help="FedEx Tacacs User Id")
     parser.add_argument("-p", "--password", type=str, help="FedEx Tacacs Password")
-    group.add_argument(
-        "--project", type=str, help="Name of directory in Project Directory defining changes to be made"
-    )
+    group.add_argument("--job", type=str, help="Name of directory in JOBS Directory defining changes to be made")
 
     args = parser.parse_args()
 
@@ -135,7 +133,7 @@ def find_yaml_file(directory: Path) -> str:
     return yaml_files[0]
 
 
-def get_project_details(file_path: Path) -> dict:
+def get_job_details(file_path: Path) -> dict:
     """
     Reads a YAML file and returns its contents as a dictionary.
 
@@ -143,14 +141,14 @@ def get_project_details(file_path: Path) -> dict:
     :return: Dictionary containing the YAML file contents
     """
     try:
-        project_yaml_file = find_yaml_file(file_path)
+        job_yaml_file = find_yaml_file(file_path)
     except (FileNotFoundError, ValueError) as e:
         raise FileNotFoundError(f"Error: The file {file_path} was not found. {e}")
     except NotADirectoryError as e:
         raise NotADirectoryError(f"Error: {e}")
 
     try:
-        with open(file_path.joinpath(project_yaml_file), "r") as file:
+        with open(file_path.joinpath(job_yaml_file), "r") as file:
             data = yaml.safe_load(file)
             return data
     except FileNotFoundError:
@@ -165,7 +163,7 @@ def create_yaml_files(content: dict, dest_dir: str, dest_filename: str) -> None:
         yaml.dump(content, yaml_file, default_flow_style=False)
 
 
-def create_or_replace_directory(directory: Path, base_directory: Path = PROJECT_DIR) -> None:
+def create_or_replace_directory(directory: Path, base_directory: Path = JOB_DIR) -> None:
     """
     Creates a new directory. If the directory already exists, it removes the existing directory
     and creates a new one with the same name. Ensures the directory is within the base directory.
@@ -219,7 +217,7 @@ def copy_directory_contents(src, dest):
 def create_ansible_playbook_dirs(working_dir: object) -> dict:
     """Create Ansible directories
 
-    :param working_dir: project directory
+    :param working_dir: jobs directory
     """
     playbook_dirs = [
         working_dir,
@@ -242,7 +240,7 @@ def copy_jinja2_template(template_name: str, change_directory: Path) -> None:
     """
     Copy the jinja2 template provided to the ansible template directory
 
-    :param change_directory: top level project directory
+    :param change_directory: top level job directory
     :param template_name: jinja2 template filename
 
     """

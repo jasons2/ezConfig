@@ -1,8 +1,8 @@
 # App Specific Ignores
 LOGS/*
 !LOGS/README.md
-PROJECTS/*
-!PROJECTS/project_template/
+JOBS/*
+!JOBS/sample_job/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

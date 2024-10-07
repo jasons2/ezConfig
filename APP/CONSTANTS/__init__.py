@@ -17,7 +17,7 @@ CONSTANTS_DIR = APP_DIR.joinpath("CONSTANTS")
 HELPERS_DIR = APP_DIR.joinpath("HELPERS")
 MAIN_DIR = APP_DIR.parent
 LOGGING_DIR = MAIN_DIR.joinpath("LOGS")
-PROJECT_DIR = MAIN_DIR.joinpath("PROJECTS")
+JOB_DIR = MAIN_DIR.joinpath("JOBS")
 
 # Logging CONSTANTS
 LOG_FILE_NAME = "ezConfig.log"
