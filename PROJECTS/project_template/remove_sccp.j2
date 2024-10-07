@@ -1,0 +1,9 @@
+no sccp
+sccp ccm group 1
+ no associate ccm 1 priority 1
+ no associate ccm 2 priority 2
+!
+no sccp ccm {{ on_prem_ip_1 }} identifier 1 version 7.0 
+no sccp ccm {{ on_prem_ip_2 }} identifier 2 version 7.0 
+!
+

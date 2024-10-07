@@ -1,0 +1,11 @@
+!
+sccp ccm {{ di_ip_1 }} identifier 1 version 7.0
+sccp ccm {{ di_ip_2 }} identifier 2 version 7.0
+!
+sccp ccm group 1
+ associate ccm 1 priority 1
+ associate ccm 2 priority 2
+sccp 
+
+
+

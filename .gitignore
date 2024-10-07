@@ -2,7 +2,7 @@
 LOGS/*
 !LOGS/README.md
 PROJECTS/*
-!PROJECTS/sample_project/
+!PROJECTS/project_template/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

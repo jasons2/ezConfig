@@ -1,0 +1,23 @@
+- name: remove sccp values
+  description: Remove old SCCP values
+  device_names: [host1.somedomain.com, host2.somedomain.com, host3.somedomain.com]
+  jinja2_template: remove_sccp.j2
+  variables:
+    on_prem_ip_1: 10.10.10.10
+    on_prem_ip_2: 20.20.20.20
+
+- name: add sccp values
+  description: Add new SCCP values
+  device_names: [host1.somedomain.com, host2.somedomain.com, host3.somedomain.com]
+  jinja2_template: add_sccp.j2
+  variables:
+    di_ip_1: 30.30.30.30
+    di_ip_2: 40.40.40.40
+
+- name: add sip values
+  description: Add new Voice-Class Server Group to Devices
+  device_names: [host4.somedomain.com, host5.somedomain.com, host6.somedomain.com]
+  jinja2_template: add_voice_class.j2
+  variables:
+    sip_ip1: 50.50.50.50
+    sip_ip2: 60.60.60.60
