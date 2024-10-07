@@ -86,12 +86,6 @@ def getArgs() -> dict:
         "--project", type=str, help="Name of directory in Project Directory defining changes to be made"
     )
 
-    parser.add_argument(
-        "--unattended",
-        action="store_true",
-        help="No confirmation questions will be asked.  USE WITH CARE!!!!!",
-    )
-
     args = parser.parse_args()
 
     if not args.password:
