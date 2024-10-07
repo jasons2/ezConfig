@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 __author__ = ["Jason Smith"]
-__credits__ = ["Jason Smith", "Steve Powell"]
+__credits__ = ["Jason Smith"]
 __email__ = ["jasons2@cisco.com"]
 
 # IMPORTS
