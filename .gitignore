@@ -1,6 +1,8 @@
 # App Specific Ignores
-LOGS/
-PROJECTS/
+LOGS/*
+!LOGS/README.md
+PROJECTS/*
+!PROJECTS/sample_project/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

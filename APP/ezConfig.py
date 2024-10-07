@@ -35,6 +35,7 @@ from HELPERS import setupLogging
 
 
 def main() -> None:
+
     logger = setupLogging(__name__, "ezConfig", INFO, DEBUG)
     args = getArgs()
     project_home = PROJECT_DIR.joinpath(args.project)

@@ -10,6 +10,7 @@ from datetime import datetime
 import re
 from logging import INFO, DEBUG
 
+
 # APPLICATION TREE
 APP_DIR = Path.cwd()
 CONSTANTS_DIR = APP_DIR.joinpath("CONSTANTS")
