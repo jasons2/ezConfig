@@ -51,5 +51,5 @@ optional arguments:
                         FedEx Tacacs User Id
   -p PASSWORD, --password PASSWORD
                         FedEx Tacacs Password
-  --project PROJECT     Name of directory in Project Directory defining changes to be made
+  --job JOB     Name of directory in JOBS Directory defining changes to be made
 ```
